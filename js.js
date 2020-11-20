@@ -5,8 +5,8 @@ const refs = {
     modalImages: document.querySelector('.lightbox__image'),
     modal: document.querySelector('.lightbox'),
     modalBtn: document.querySelector('.lightbox__button'),
+    overlay: document.querySelector('.lightbox__overlay'), 
 }
-
 
 function createImageItem(array) {
     const items = [];
@@ -33,27 +33,43 @@ function createImageItem(array) {
 }
 
 const imageItems = createImageItem(galleryList);
+refs.gallery.append(...imageItems);
 
-refs.gallery.append(...imageItems)
-refs.gallery.addEventListener('click', onClick)
-refs.modalBtn.addEventListener('click', modalClose)
+refs.gallery.addEventListener('click', onOppenModal);
+refs.modalBtn.addEventListener('click', onModalClose);
+refs.overlay.addEventListener('click', onBeckDropCkick);
 
-function onClick(event) {
+
+
+function onOppenModal(event) {
+    window.addEventListener('keydown', onPressEscape);
+    
     event.preventDefault();
     if (event.target.nodeName !== 'IMG') {
         return
     }
-    refs.modal.classList.add('is-open')
-    refs.modalImages.src = event.target.dataset.source
-}
+    refs.modal.classList.add('is-open');
+    refs.modalImages.src = event.target.dataset.source;  
+} 
 
-
-function modalClose(close) {
-    close.preventDefault();
-    if (close.target.nodeName !== 'BUTTON') {
-        return
-    }
-        refs.modal.classList.remove('is-open')
-        refs.modalImages.src = '';
+function onModalClose() {
+    window.removeEventListener('keydown', onPressEscape);
+    refs.modal.classList.remove('is-open');
+    refs.modalImages.src = '';  
 }
     
+function onBeckDropCkick(event) {
+    if (event.target.nodeName === 'DIV') {
+     onModalClose ()
+    }
+}
+
+function onPressEscape(event) {
+    if (event.code === 'Escape') {
+        onModalClose ()
+    }
+}  
+
+// 
+
+// Перегортування зображень галереї у відкритому модальному вікні клавішами "вліво" і "вправо".
