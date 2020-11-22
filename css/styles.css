@@ -138,3 +138,34 @@ body {
 .lightbox__button:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.svg {
+  position: absolute;
+  top: center;
+  /* display: flex; */
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background-color: transparent;
+  /* fill: white; */
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+}
+
+.left {
+  left: 58px;
+  background-image: url("../images/iconfinder_left_4829874-1.svg");
+}
+
+.right {
+  right: 58px;
+  background-image: url("../images/iconfinder_right_4829872-2.svg");
+}
+
+.svg:hover,
+.svg:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+}
