@@ -10,11 +10,11 @@ const refs = {
     buttonLeft: document.querySelector('.left')
 }
 
-const items = ((element) => {
+const items = ((element, index) => {
     const img = document.createElement('img');
     img.setAttribute('src', element.preview);
     img.setAttribute('data-source', element.original);
-    img.setAttribute('data-index', element.index);
+    img.setAttribute('data-index', index);
     img.setAttribute('alt', element.description);
     img.classList.add('gallery__image')
 
@@ -29,7 +29,7 @@ const items = ((element) => {
     return item
 })
 
-const imageItems = galleryList.map((element) => items(element))
+const imageItems = galleryList.map((element,index) => items(element,index))
 
 refs.gallery.append(...imageItems)
 
