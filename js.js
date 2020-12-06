@@ -16,6 +16,7 @@ const items = ((element, index) => {
     img.setAttribute('data-source', element.original);
     img.setAttribute('data-index', index);
     img.setAttribute('alt', element.description);
+    img.setAttribute('loading', 'lazy')
     img.classList.add('gallery__image')
 
     const ref = document.createElement('a');
